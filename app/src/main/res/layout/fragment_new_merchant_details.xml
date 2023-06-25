@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.MainActivity">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:elevation="50dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/NewMerchant"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/new_merchant_details_EDT_merchant_name"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginVertical="10dp"
+            android:layout_weight="1"
+            android:hint="@string/MerchantName"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/new_merchant_details_EDT_merchant_phone"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginVertical="10dp"
+            android:layout_weight="1"
+            android:hint="@string/phoneNumber"
+            android:inputType="phone"
+            android:textSize="20dp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1">
+
+            <!-- using linear layout to store multiple view
+                 inside a Horizontal Scroll View -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- multiple button views to show a
+                      scrollable horizontal list -->
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/new_merchant_details_chip_gym"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipIcon="@drawable/gym_svgrepo_com"
+                    app:chipIconSize="50dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/new_merchant_details_chip_barbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="10dp"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipIcon="@drawable/haircut_tools_barber_tools_haircut_svgrepo_com"
+                    app:chipIconSize="30dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/new_merchant_details_chip_makeup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="10dp"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipIcon="@drawable/brush_makeup_svgrepo_com"
+                    app:chipIconSize="30dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/new_merchant_details_chip_privetLesson"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="10dp"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipIcon="@drawable/baseline_menu_book_24"
+                    app:chipIconSize="30dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/new_merchant_details_chip_nails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="10dp"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipIcon="@drawable/noun_nails_1055226"
+                    app:chipIconSize="30dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/new_merchant_details_chip_spa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="10dp"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipIcon="@drawable/noun_spa_treatment_1335675"
+                    app:chipIconSize="30dp" />
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <FrameLayout
+            android:id="@+id/new_merchant_details_map_and_address"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/new_merchant_details_description"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginVertical="10dp"
+            android:layout_weight="2"
+            android:elevation="2dp"
+            android:hint="@string/description"
+            android:maxLength="@integer/material_motion_duration_medium_1"
+            android:padding="12dp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</RelativeLayout>
+
+

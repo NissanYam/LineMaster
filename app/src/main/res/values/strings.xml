@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">LineMaster</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="phoneNumber">Phone number</string>
+    <string name="firstName">First name</string>
+    <string name="lastName">Last name</string>
+    <string name="Hello">Hello</string>
+    <string name="Select_a_service_type">Select a service type</string>
+    <string name="SearchCity">Search city</string>
+    <string name="NewMerchant">New Merchant</string>
+    <string name="MerchantName">Merchant Name</string>
+    <string name="StreetNumber">Street and number</string>
+    <string name="description">Additional description for your business</string>
+    <string name="Next">Next</string>
+    <string name="Previous">Previous</string>
+    <string name="ActivityTime">Activity time</string>
+    <string name="Sunday">Sunday</string>
+    <string name="Monday">Monday</string>
+    <string name="Tuesday">Tuesday</string>
+    <string name="Wednesday">Wednesday</string>
+    <string name="Thursday">Thursday</string>
+    <string name="Friday">Friday</string>
+    <string name="Saturday">Saturday</string>
+    <string name="startTime">Start time</string>
+    <string name="endTime">End time</string>
+    <string name="Services">Service type</string>
+    <string name="newServices">Add new services</string>
+    <string name="ServicesName">Service Name</string>
+    <string name="Price">Price</string>
+    <string name="minutes">m</string>
+    <string name="hours">h</string>
+    <string name="PageStyle">Page style</string>
+    <string name="Done">Done</string>
+    <string name="apiKey">AIzaSyAAC75yJ7awEaW3Clp-eoFSVMbY1PEKbZ8</string>
+    <string name="NotFound">Not found</string>
+    <string name="Search_for_address">Search for address..</string>
+    <string name="start_end_time">Start time must be before end time</string>
+    <string name="Journal">Journal</string>
+    <string name="address">Address</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+
+    <string name="job_success" translatable="false">Job Success</string>
+    <string name="ui_ux_designer" translatable="false">UI/UX Designer</string>
+    <string name="my_desc" translatable="false">Doing at the sweet spot between aesthetics and elegance to give life to your brand.My opinion belong to nobody but myself.</string>
+    <string name="about_me" translatable="false">About Me</string>
+    <string name="contact" >Contact</string>
+    <string name="skills" translatable="false">Skills</string>
+    <string name="ratings" translatable="false">Star Ratings</string>
+    <string name="samplereview" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium bibendum sapien, ut euismod massa. Duis convallis sem sed turpis elementum auctor.</string>
+    <string name="profile">Profile</string>
+    <string name="Exit_Edit">Exit Edit</string>
+    <string name="Edit">Edit</string>
+    <string name="Order_details">Order details</string>
+    <string name="remove">Remove</string>
+    <string name="description_merchant">Description</string>
+    <string name="details">Details</string>
+    <string name="Order_Confirmation">Order Confirmation</string>
+    <string name="merchantPhone">Merchant phone</string>
+    <string name="cstomerPhone">Customer phone</string>
+
+</resources>

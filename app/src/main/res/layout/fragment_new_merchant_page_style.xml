@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Activities.MainActivity">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:elevation="50dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/PageStyle"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:layout_weight="0.1"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5">
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.052083332" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.9557292" />
+            <View
+                android:id="@+id/new_merchant_page_style_viewColor"
+                android:layout_width="0dp"
+                android:layout_height="139dp"
+                android:layout_marginTop="116dp"
+                android:background="@color/LeadingColor"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/new_merchant_page_style_logo"
+                android:layout_width="178dp"
+                android:layout_height="179dp"
+                android:background="@drawable/profile_bg"
+                android:backgroundTint="@color/LeadingColor"
+                app:layout_constraintBottom_toTopOf="@+id/new_merchant_page_style_viewColor"
+                app:layout_constraintDimensionRatio="w,1:1"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="@+id/new_merchant_page_style_viewColor" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/new_merchant_page_style_logoIMG"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FFFFFF"
+                android:layout_width="178dp"
+                android:layout_height="179dp"
+                android:background="@drawable/noun_new_5563868"
+                app:layout_constraintBottom_toTopOf="@+id/new_merchant_page_style_viewColor"
+                app:layout_constraintDimensionRatio="w,1:1"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="@+id/new_merchant_page_style_viewColor"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.akki.circlemenu.CircleMenu
+            android:id="@+id/new_merchant_page_style_circle_menu"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:layout_gravity="center"
+            app:menu_icons="@array/icons2"
+            app:menu_background_color="@array/colors2"
+            app:menu_close_duration="300"
+            app:menu_open_duration="300"
+            app:menu_orientation="circle"
+            app:menu_radius="100dp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</RelativeLayout>

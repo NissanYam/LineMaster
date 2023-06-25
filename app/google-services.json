@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1028505906143",
+    "project_id": "linemaster-25bac",
+    "storage_bucket": "linemaster-25bac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1028505906143:android:23ca37cf41d48d1a15f26a",
+        "android_client_info": {
+          "package_name": "com.example.linemaster"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1028505906143-3vcle4rqtt28djqa95g82a8bpb55tqh9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbOQ5LCvcoZtY9__QQ8lID87tU9dUamzk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1028505906143-3vcle4rqtt28djqa95g82a8bpb55tqh9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

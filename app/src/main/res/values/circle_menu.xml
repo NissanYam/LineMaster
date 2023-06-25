@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- we need two arrays, one for the icons and one for the colors of the icons-->
+    <!-- icons array-->
+    <array name="icons">
+        <item>@drawable/noun_search_5784563</item>
+        <item>@drawable/noun_new_5563868</item>
+        <item>@drawable/noun_merchant_5111948</item>
+        <item>@drawable/calendar_svgrepo_com</item>
+        <item>@drawable/profile_round_1342_svgrepo_com</item>
+    </array>
+    <!-- icons colors-->
+    <array name="colors">
+        <item>@color/blue</item>
+        <item>@android:color/holo_green_dark</item>
+        <item>@android:color/holo_red_light</item>
+        <item>@android:color/holo_purple</item>
+        <item>@color/white</item>
+        <item>@color/LeadingColor</item>
+    </array>
+    <array name="icons2">
+        <item>@drawable/baseline_fiber_manual_record_24</item>
+        <item>@drawable/baseline_fiber_manual_record_24</item>
+        <item>@drawable/baseline_fiber_manual_record_24</item>
+        <item>@drawable/baseline_fiber_manual_record_24</item>
+        <item>@drawable/baseline_fiber_manual_record_24</item>
+    </array>
+    <!-- icons colors-->
+    <array name="colors2">
+        <item>@color/blue</item>
+        <item>@android:color/holo_green_dark</item>
+        <item>@android:color/holo_red_light</item>
+        <item>@android:color/holo_purple</item>
+        <item>@color/white</item>
+        <item>@color/LeadingColor</item>
+    </array>
+</resources>

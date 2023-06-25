@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:orientation="vertical"
+    tools:context=".Activities.MainActivity">
+    <LinearLayout
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:background="#293859">
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/merchant_new_appointment_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Appointment name"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+    <CalendarView
+        android:id="@+id/merchant_new_appointment_calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topbar"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/circularbordersolid"
+        android:orientation="vertical"
+        android:padding="6dp"
+        android:layout_below="@+id/merchant_new_appointment_calendarView">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/merchant_new_appointment_rangeTimes"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:listitem="@layout/range_time_item"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/merchant_new_appointment_order_confirmation"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/Order_Confirmation"
+            android:textColor="@color/white"
+            android:layout_weight="0.25"
+            android:backgroundTint="@color/LeadingColor"
+            android:visibility="gone"
+            style="@style/Widget.Material3.Button.TonalButton"/>
+    </LinearLayout>
+
+
+</RelativeLayout>
