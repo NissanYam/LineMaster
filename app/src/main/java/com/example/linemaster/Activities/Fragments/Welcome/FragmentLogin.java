@@ -100,7 +100,8 @@ public class FragmentLogin extends Fragment {
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
                                     FirebaseUser user = mAuth.getCurrentUser();
-                                    callBackFragmentLogin.LogInUserSuccessful(email);
+                                    callBackFragmentLogin.LogInUserSuccessful
+                                            (FirebaseAuth.getInstance().getCurrentUser().getEmail());
                                 } else {
                                     MySignal.getInstance().playYoyo(login_EDT_email);
                                 }

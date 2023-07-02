@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class FragmentRegister extends Fragment {
     private AppCompatEditText register_EDT_email;
@@ -88,8 +89,10 @@ public class FragmentRegister extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
+                                    FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
                                     MySignal.getInstance().toast("Created");
-                                    callBackFragmentRegister.RegisterUserSuccessful(email, firstName , lastName);
+                                    callBackFragmentRegister
+                                            .RegisterUserSuccessful(currentFirebaseUser.getEmail(), firstName , lastName);
                                 } else {
                                     MySignal.getInstance().toast(task.getException().getMessage());
                                 }

@@ -6,90 +6,105 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Activities.MainActivity">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
-        android:elevation="50dp"
-        android:orientation="vertical">
+        android:layout_height="240dp"
+        android:background="#293859" />
+
+    <!--Top Header Layout-->
+    <LinearLayout
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:padding="16dp">
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center"
+            android:id="@+id/merchant_page_merchant_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/PageStyle"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            android:layout_weight="0.1"/>
-        <androidx.constraintlayout.widget.ConstraintLayout
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:layout_below="@+id/topbar">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5">
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline"
-                android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp">
+
+            <!--Top Profile Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/circularbordersolid"
+                android:gravity="center"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.052083332" />
+                android:padding="16dp">
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline2"
-                android:layout_width="wrap_content"
+                <androidx.cardview.widget.CardView
+                    android:layout_width="150dp"
+                    android:layout_height="90dp"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="0dp">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/new_merchant_page_style_logoIMG"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="#FFFFFF"
+                        android:layout_width="150dp"
+                        android:layout_height="90dp"
+                        android:background="@drawable/noun_new_5563868"
+                        app:layout_constraintBottom_toTopOf="@+id/new_merchant_page_style_viewColor"
+                        app:layout_constraintDimensionRatio="w,1:1"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                        app:layout_constraintStart_toStartOf="@+id/guideline"
+                        app:layout_constraintTop_toTopOf="@+id/new_merchant_page_style_viewColor"/>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+            <!--Bootom Cards with sections-->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.9557292" />
-            <View
-                android:id="@+id/new_merchant_page_style_viewColor"
-                android:layout_width="0dp"
-                android:layout_height="139dp"
-                android:layout_marginTop="116dp"
-                android:background="@color/LeadingColor"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:orientation="vertical"/>
 
-            <ImageView
-                android:id="@+id/new_merchant_page_style_logo"
-                android:layout_width="178dp"
-                android:layout_height="179dp"
-                android:background="@drawable/profile_bg"
-                android:backgroundTint="@color/LeadingColor"
-                app:layout_constraintBottom_toTopOf="@+id/new_merchant_page_style_viewColor"
-                app:layout_constraintDimensionRatio="w,1:1"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/new_merchant_page_style_viewColor" />
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/new_merchant_page_style_logoIMG"
-                app:civ_border_width="2dp"
-                app:civ_border_color="#FFFFFF"
-                android:layout_width="178dp"
-                android:layout_height="179dp"
-                android:background="@drawable/noun_new_5563868"
-                app:layout_constraintBottom_toTopOf="@+id/new_merchant_page_style_viewColor"
-                app:layout_constraintDimensionRatio="w,1:1"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/new_merchant_page_style_viewColor"/>
+            <!--Experience Bottom Cards-->
+            <LinearLayout
+                android:id="@+id/experience"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <com.akki.circlemenu.CircleMenu
-            android:id="@+id/new_merchant_page_style_circle_menu"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.3"
-            android:layout_gravity="center"
-            app:menu_icons="@array/icons2"
-            app:menu_background_color="@array/colors2"
-            app:menu_close_duration="300"
-            app:menu_open_duration="300"
-            app:menu_orientation="circle"
-            app:menu_radius="100dp" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
+            <!--Review Bottom Cards-->
+            <LinearLayout
+                android:id="@+id/review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
