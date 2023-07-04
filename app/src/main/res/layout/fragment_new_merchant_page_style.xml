@@ -4,13 +4,8 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Activities.MainActivity">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:background="#293859" />
-
+    tools:context=".Activities.MainActivity"
+    android:background="#293859">
     <!--Top Header Layout-->
     <LinearLayout
         android:id="@+id/topbar"
@@ -58,53 +53,32 @@
             <!--Top Profile Section -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
                 android:background="@drawable/circularbordersolid"
                 android:gravity="center"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:padding="16dp">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="150dp"
-                    android:layout_height="90dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     app:cardCornerRadius="6dp"
                     app:cardElevation="0dp">
-                    <de.hdodenhof.circleimageview.CircleImageView
+                    <ImageView
                         android:id="@+id/new_merchant_page_style_logoIMG"
-                        app:civ_border_width="2dp"
-                        app:civ_border_color="#FFFFFF"
-                        android:layout_width="150dp"
-                        android:layout_height="90dp"
-                        android:background="@drawable/noun_new_5563868"
-                        app:layout_constraintBottom_toTopOf="@+id/new_merchant_page_style_viewColor"
-                        app:layout_constraintDimensionRatio="w,1:1"
-                        android:scaleType="centerCrop"
-                        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                        app:layout_constraintStart_toStartOf="@+id/guideline"
-                        app:layout_constraintTop_toTopOf="@+id/new_merchant_page_style_viewColor"/>
-
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/noun_new_5563868"
+                        android:layout_gravity="center"
+                        />
                 </androidx.cardview.widget.CardView>
-
             </LinearLayout>
-            <!--Bootom Cards with sections-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"/>
-
-            <!--Experience Bottom Cards-->
-            <LinearLayout
-                android:id="@+id/experience"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"/>
-
-            <!--Review Bottom Cards-->
-            <LinearLayout
-                android:id="@+id/review"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"/>
+            <ImageView
+                android:id="@+id/new_merchant_page_style_logoIMG_gallery"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="right"
+                android:src="@drawable/baseline_drive_folder_upload_24"/>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

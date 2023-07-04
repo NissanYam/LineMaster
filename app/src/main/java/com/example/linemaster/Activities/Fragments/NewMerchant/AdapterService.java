@@ -27,10 +27,6 @@ public class AdapterService extends RecyclerView.Adapter<AdapterService.ServiceV
         this.onServiceClickListener = onServiceClickListener;
     }
 
-    public List<Service> getServices() {
-        return services;
-    }
-
     public AdapterService setServices(List<Service> services) {
         this.services = services;
         return this;
@@ -47,7 +43,7 @@ public class AdapterService extends RecyclerView.Adapter<AdapterService.ServiceV
     public void onBindViewHolder(@NonNull ServiceViewHolder holder, int position) {
         Service service = getItem(position);
         holder.service_item_TXT_name.setText(service.getServiceName());
-        holder.service_item_TXT_price.setText(service.getPrice()+" $$");
+        holder.service_item_TXT_price.setText(String.format("%d $$", service.getPrice()));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             holder.service_item_TXT_time.setText(formatTime(service.getServiceTimeHour() ,service.getServiceTimeMinutes()));
         }

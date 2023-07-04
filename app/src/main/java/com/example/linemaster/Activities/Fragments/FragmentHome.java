@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.appcompat.widget.SearchView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -30,19 +29,16 @@ public class FragmentHome extends Fragment {
     private MaterialButton home_BTN_all;
     private MaterialButton home_BTN_privetLesson;
     private RecyclerView recyclerview_list_business;
-    private SearchView home_search;
     private AdapterAllMerchantsUser adapterAllMerchantsUser;
     private ArrayList<Merchant> merchants;
 
     public FragmentHome() {
     }
-    public FragmentHome setMerchants(ArrayList<Merchant> merchants) {
+    public void setMerchants(ArrayList<Merchant> merchants) {
         this.merchants = merchants;
-        return this;
     }
-    public FragmentHome setCallBackFragmentHome(CallBackFragmentHome callBackFragmentHome) {
+    public void setCallBackFragmentHome(CallBackFragmentHome callBackFragmentHome) {
         this.callBackFragmentHome = callBackFragmentHome;
-        return this;
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,7 +60,6 @@ public class FragmentHome extends Fragment {
         home_BTN_all = view.findViewById(R.id.home_BTN_all);
         home_BTN_privetLesson = view.findViewById(R.id.home_BTN_privetLesson);
         recyclerview_list_business = view.findViewById(R.id.recyclerview_list_business);
-        home_search = view.findViewById(R.id.home_search);
     }
 
     @Override

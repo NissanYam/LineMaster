@@ -1,32 +1,29 @@
 package com.example.linemaster.Activities.Fragments.NewMerchant;
 
 import static android.app.Activity.RESULT_OK;
-
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import com.example.linemaster.Activities.Fragments.NewMerchant.CallbacksMerchant.CallBackFragmentNewMerchantPageStyle;
-import com.example.linemaster.MySignal;
 import com.example.linemaster.R;
 
 
 public class FragmentNewMerchantPageStyle extends Fragment implements CurrentFragmentNewMerchant {
 
     private CallBackFragmentNewMerchantPageStyle callBackFragmentNewMerchantPageStyle;
-    private ImageView new_merchant_page_style_logoIMG;
-    private Bitmap logoImage;
+    private ImageView new_merchant_page_style_logoIMG, new_merchant_page_style_logoIMG_gallery;
+    private Uri uriImage;
 
+    public Uri getUriImage() {
+        return uriImage;
+    }
 
     public FragmentNewMerchantPageStyle() {
     }
@@ -47,12 +44,12 @@ public class FragmentNewMerchantPageStyle extends Fragment implements CurrentFra
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_new_merchant_page_style, container, false);
         findViews(view);
-        checkPermissions();
         return view;
     }
 
     private void findViews(View view) {
         new_merchant_page_style_logoIMG = view.findViewById(R.id.new_merchant_page_style_logoIMG);
+        new_merchant_page_style_logoIMG_gallery = view.findViewById(R.id.new_merchant_page_style_logoIMG_gallery);
     }
 
     @Override
@@ -62,43 +59,12 @@ public class FragmentNewMerchantPageStyle extends Fragment implements CurrentFra
     }
 
     private void initViews() {
-        new_merchant_page_style_logoIMG.setOnClickListener(new View.OnClickListener() {
+        new_merchant_page_style_logoIMG_gallery.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startCamera.launch(cameraIntent);
+            public void onClick(View view) {
+                imageChooser();
             }
         });
-    }
-
-    private ActivityResultLauncher<Intent> startCamera = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == RESULT_OK) {
-                    Bundle extras = result.getData().getExtras();
-                    Bitmap image = (Bitmap) extras.get("data");
-                    logoImage = image;
-
-                    ImageView profileImage = new_merchant_page_style_logoIMG;
-                    profileImage.setImageBitmap(image);
-                    profileImage.setPadding(4, 4, 4, 4); // Set padding if needed
-                    profileImage.invalidate(); // Invalidate the view to reflect the changes
-                }
-            });
-
-    private void checkPermissions() {
-        ActivityCompat.requestPermissions(
-                getActivity(),
-                new String[]{android.Manifest.permission.CAMERA},
-                333);
-    }
-    private static final String DEFULT = "0";
-    public void setImgProfile(String bitmap){
-        if(bitmap.equals(DEFULT)){
-            new_merchant_page_style_logoIMG.setImageResource(R.drawable.noun_merchant_5111948);
-        }else {
-            new_merchant_page_style_logoIMG.setImageBitmap(MySignal.getInstance().StringToBitMap(bitmap));;///TODO: get the merchant logo
-        }
     }
     @Override
     public boolean getAllowToContinue() {
@@ -110,8 +76,42 @@ public class FragmentNewMerchantPageStyle extends Fragment implements CurrentFra
         new_merchant_page_style_logoIMG.setImageResource(R.drawable.noun_merchant_5111948);
     }
 
-    public Bitmap getLogoImage() {
-        return logoImage;
+    // constant to compare
+    // the activity result code
+    int SELECT_PICTURE = 200;
+
+    // this function is triggered when
+    // the Select Image Button is clicked
+    void imageChooser() {
+
+        // create an instance of the
+        // intent of the type image
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+
+        // pass the constant to compare it
+        // with the returned requestCode
+        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
     }
 
+    // this function is triggered when user
+    // selects the image from the imageChooser
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+
+            // compare the resultCode with the
+            // SELECT_PICTURE constant
+            if (requestCode == SELECT_PICTURE) {
+                // Get the url of the image from data
+                uriImage = data.getData();
+                if (null != uriImage) {
+                    // update the preview image in the layout
+                    new_merchant_page_style_logoIMG.setImageURI(uriImage);
+                }
+            }
+        }
+    }
 }

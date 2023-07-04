@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.linemaster.Data.Merchant;
+import com.example.linemaster.MyRTFB;
 import com.example.linemaster.MySignal;
 import com.example.linemaster.R;
 import java.util.List;
@@ -41,10 +42,13 @@ public class AdapterAllMerchantsUser extends RecyclerView.Adapter<AdapterAllMerc
         try {
             Merchant merchant = getItem(position);
             holder.business_TXT_name.setText(merchant.getMerchantName());
-            if(merchant.getLogo() == null || merchant.getLogo().isEmpty()){
+            if(merchant.getLogo() == null
+                    ||
+                    merchant.getLogo().isEmpty()
+                    || merchant.getLogo().equals("")){
                 holder.business_IMG_logo.setImageResource(R.drawable.noun_merchant_5111948);
             }else {
-                holder.business_IMG_logo.setImageBitmap(MySignal.getInstance().StringToBitMap(merchant.getLogo()));
+                MySignal.getInstance().putImgGlide(MyRTFB.getImg(merchant.getLogo()), holder.business_IMG_logo);
             }
         }catch (Exception e){
             return;

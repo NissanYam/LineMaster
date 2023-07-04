@@ -15,14 +15,14 @@
             android:id="@+id/home_txt_title"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:background="#70E4E4E4"
             android:gravity="center"
             android:maxLines="1"
             android:text="@string/app_name"
             android:textColor="@color/LeadingColor"
             android:textSize="50dp"
-            android:textStyle="bold"
-            android:layout_weight="0.8"
-            android:background="#70E4E4E4"/>
+            android:textStyle="bold" />
 
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -43,110 +43,102 @@
                     style="@style/Widget.Material3.Button.TextButton.Icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/LeadingColor"
+                    android:elevation="20dp"
                     android:padding="4dp"
                     app:icon="@drawable/gym_svgrepo_com"
-                    app:iconSize="40dp"
-                    app:iconTint="@color/white"
-                    android:backgroundTint="@color/LeadingColor"
                     app:iconGravity="textStart"
-                    android:layout_margin="10dp"
-                    android:elevation="20dp"
-                    />
+                    app:iconSize="40dp"
+                    app:iconTint="@color/white" />
 
                 <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.Material3.Button.TextButton.Icon"
                     android:id="@+id/home_BTN_barbar"
+                    style="@style/Widget.Material3.Button.TextButton.Icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/LeadingColor"
+                    android:elevation="20dp"
                     android:padding="4dp"
                     app:icon="@drawable/haircut_tools_barber_tools_haircut_svgrepo_com"
-                    app:iconSize="40dp"
-                    app:iconTint="@color/white"
-                    android:backgroundTint="@color/LeadingColor"
                     app:iconGravity="textStart"
-                    android:layout_margin="10dp"
-                    android:elevation="20dp"
-                    />
+                    app:iconSize="40dp"
+                    app:iconTint="@color/white" />
+
                 <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.Material3.Button.TextButton.Icon"
                     android:id="@+id/home_BTN_makeup"
+                    style="@style/Widget.Material3.Button.TextButton.Icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/LeadingColor"
+                    android:elevation="20dp"
                     android:padding="4dp"
                     app:icon="@drawable/brush_makeup_svgrepo_com"
-                    app:iconSize="40dp"
-                    app:iconTint="@color/white"
-                    android:backgroundTint="@color/LeadingColor"
                     app:iconGravity="textStart"
-                    android:layout_margin="10dp"
-                    android:elevation="20dp"
-                    />
+                    app:iconSize="40dp"
+                    app:iconTint="@color/white" />
+
                 <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.Material3.Button.TextButton.Icon"
                     android:id="@+id/home_BTN_privetLesson"
+                    style="@style/Widget.Material3.Button.TextButton.Icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/LeadingColor"
+                    android:elevation="20dp"
                     android:padding="4dp"
                     app:icon="@drawable/baseline_menu_book_24"
-                    app:iconSize="40dp"
-                    app:iconTint="@color/white"
-                    android:backgroundTint="@color/LeadingColor"
                     app:iconGravity="textStart"
-                    android:layout_margin="10dp"
-                    android:elevation="20dp"
-                    />
+                    app:iconSize="40dp"
+                    app:iconTint="@color/white" />
+
                 <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.Material3.Button.TextButton.Icon"
                     android:id="@+id/home_BTN_nails"
+                    style="@style/Widget.Material3.Button.TextButton.Icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/LeadingColor"
+                    android:elevation="20dp"
                     android:padding="4dp"
                     app:icon="@drawable/noun_nails_1055226"
-                    app:iconSize="40dp"
-                    app:iconTint="@color/white"
-                    android:backgroundTint="@color/LeadingColor"
                     app:iconGravity="textStart"
-                    android:layout_margin="10dp"
-                    android:elevation="20dp"
-                    />
+                    app:iconSize="40dp"
+                    app:iconTint="@color/white" />
+
                 <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.Material3.Button.TextButton.Icon"
                     android:id="@+id/home_BTN_spa"
+                    style="@style/Widget.Material3.Button.TextButton.Icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/LeadingColor"
+                    android:elevation="20dp"
                     android:padding="4dp"
                     app:icon="@drawable/noun_spa_treatment_1335675"
-                    app:iconSize="40dp"
-                    app:iconTint="@color/white"
-                    android:backgroundTint="@color/LeadingColor"
                     app:iconGravity="textStart"
-                    android:layout_margin="10dp"
-                    android:elevation="20dp"
-                    />
+                    app:iconSize="40dp"
+                    app:iconTint="@color/white" />
+
                 <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.Material3.Button.TextButton.Icon"
                     android:id="@+id/home_BTN_all"
+                    style="@style/Widget.Material3.Button.TextButton.Icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/LeadingColor"
+                    android:elevation="20dp"
                     android:padding="4dp"
                     app:icon="@drawable/baseline_density_small_24"
-                    app:iconSize="40dp"
-                    app:iconTint="@color/white"
-                    android:backgroundTint="@color/LeadingColor"
                     app:iconGravity="textStart"
-                    android:layout_margin="10dp"
-                    android:elevation="20dp"
-                    />
+                    app:iconSize="40dp"
+                    app:iconTint="@color/white" />
             </LinearLayout>
 
         </HorizontalScrollView>
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/home_search"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.4"
-            app:queryHint="@string/SearchCity"
-            android:inputType="text"/>
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view"
             android:layout_width="match_parent"
@@ -154,6 +146,7 @@
             android:layout_weight="5"
             android:elevation="22dp"
             app:cardElevation="22dp">
+
             <RelativeLayout
                 android:id="@+id/home_card_recycleView"
                 android:layout_width="match_parent"

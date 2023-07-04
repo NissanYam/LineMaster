@@ -56,16 +56,14 @@ public class AdapterCalender extends RecyclerView.Adapter<AdapterCalender.Appoin
     @Override
     public void onBindViewHolder(@NonNull AppointmentUserViewHolder holder, int position) {
         Appointment appointment = getItem(position);
-        holder.appointment_merchant_name.setText(appointment.getMerchantName()+" "+ appointment.getService().getServiceName());
+        holder.appointment_merchant_name.setText(String.format("%s %s", appointment.getMerchantName(), appointment.getService().getServiceName()));
         MyRTFB.getSpecificMerchant(appointment.getMerchantName(), appointment.getMerchantOwner(), new MyRTFB.CB_Merchant() {
             @Override
             public void getMerchantData(Merchant merchant) {
                 MyRTFB.getUser(appointment.getCustomerEmail(), new MyRTFB.CB_User() {
                     @Override
                     public void getUserData(User user) {
-                        holder.appointment_merchant_phone.setText("Merchant Phone -> "+merchant.getMerchantPhone()+"\n"+
-                                                                    "Customer Phone -> "+user.getPhoneNumber()+"\n"+
-                                                                    "Customer Email -> "+user.getEmail());
+                        holder.appointment_merchant_phone.setText(String.format("Merchant Phone -> %s\nCustomer Phone -> %s\nCustomer Email -> %s", merchant.getMerchantPhone(), user.getPhoneNumber(), user.getEmail()));
                     }
                 });
 
@@ -83,9 +81,7 @@ public class AdapterCalender extends RecyclerView.Adapter<AdapterCalender.Appoin
             }
         });
 
-        holder.appointment_date_and_time.setText(appointment.getDay()+"/"+appointment.getMonth()+"/"+appointment.getYear()
-                +" - "+
-                appointment.getAppointmentTimeHour()+" : "+appointment.getAppointmentTimeMinute());
+        holder.appointment_date_and_time.setText(String.format("%d/%d/%d - %d : %d", appointment.getDay(), appointment.getMonth(), appointment.getYear(), appointment.getAppointmentTimeHour(), appointment.getAppointmentTimeMinute()));
 
     }
     @Override

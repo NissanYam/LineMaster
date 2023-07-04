@@ -12,6 +12,8 @@ import androidx.appcompat.widget.AppCompatEditText;
 import androidx.fragment.app.Fragment;
 
 import com.example.linemaster.Activities.Callbacks.CallBackFragmentLogin;
+import com.example.linemaster.Data.User;
+import com.example.linemaster.MyRTFB;
 import com.example.linemaster.MySignal;
 import com.example.linemaster.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -60,7 +62,14 @@ public class FragmentLogin extends Fragment {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            callBackFragmentLogin.LogInUserSuccessful(currentUser.getEmail());
+            MyRTFB.getUser(currentUser.getEmail(), new MyRTFB.CB_User() {
+                @Override
+                public void getUserData(User user) {
+                    if(user == null)
+                        return;
+                    callBackFragmentLogin.LogInUserSuccessful(user.getEmail());
+                }
+            });
         }
     }
 
@@ -93,20 +102,26 @@ public class FragmentLogin extends Fragment {
             public void onClick(View v) {
                 String email = login_EDT_email.getText().toString().trim();
                 String password = login_EDT_password.getText().toString().trim();
-                mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    callBackFragmentLogin.LogInUserSuccessful
-                                            (FirebaseAuth.getInstance().getCurrentUser().getEmail());
-                                } else {
-                                    MySignal.getInstance().playYoyo(login_EDT_email);
+                if(email.isEmpty() || password.isEmpty()){
+                    MySignal.getInstance().vibrate(200);
+                    MySignal.getInstance().playYoyo(login_EDT_email);
+                    MySignal.getInstance().playYoyo(login_EDT_password);
+                }else {
+                    mAuth.signInWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        callBackFragmentLogin.LogInUserSuccessful
+                                                (FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                                    } else {
+                                        MySignal.getInstance().playYoyo(login_EDT_email);
+                                    }
                                 }
-                            }
-                        });
+                            });
+                }
             }
         });
 

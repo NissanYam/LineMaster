@@ -1,13 +1,10 @@
 package com.example.linemaster.Activities.Fragments.NewMerchant;
 
-import static java.time.LocalTime.of;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
-
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Build;
@@ -15,7 +12,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.linemaster.Activities.Fragments.NewMerchant.CallbacksMerchant.CallBackFragmentNewMerchantTimes;
 import com.example.linemaster.Data.BusinessDay;
 import com.example.linemaster.Data.Merchant;
@@ -23,7 +19,6 @@ import com.example.linemaster.Data.TimeRange;
 import com.example.linemaster.MySignal;
 import com.example.linemaster.R;
 import com.google.android.material.button.MaterialButton;
-
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.Calendar;

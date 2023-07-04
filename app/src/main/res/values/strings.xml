@@ -28,8 +28,8 @@
     <string name="newServices">Add new services</string>
     <string name="ServicesName">Service Name</string>
     <string name="Price">Price</string>
-    <string name="minutes">m</string>
-    <string name="hours">h</string>
+    <string name="minutes">MM</string>
+    <string name="hours">HH</string>
     <string name="PageStyle">Page style</string>
     <string name="Done">Done</string>
     <string name="apiKey">AIzaSyAAC75yJ7awEaW3Clp-eoFSVMbY1PEKbZ8</string>

@@ -1,6 +1,6 @@
 package com.example.linemaster;
 
-import android.util.Log;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 
@@ -8,27 +8,22 @@ import com.example.linemaster.Data.Appointment;
 import com.example.linemaster.Data.Journal;
 import com.example.linemaster.Data.Merchant;
 import com.example.linemaster.Data.User;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
-
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 
 public class MyRTFB {
     private static final String USERS ="USERS";
     private static final String MERCHANTS ="MERCHANTS";
     private static final String UNDERSCORE ="_";
-    private static final String JOURNAL ="Journal";
-
 
 
 
@@ -38,11 +33,12 @@ public class MyRTFB {
 
         void getAllMerchants(ArrayList<Merchant> merchantArrayList);
     }
-
     public interface CB_User {
         void getUserData(User user);
     }
-
+    public interface CB_Img {
+        void getOk();
+    }
     private static final String POINT = ".";
     private static final String SEMICOLON = ";";
     public static void saveNewUser(User user) {
@@ -88,8 +84,7 @@ public class MyRTFB {
     public static void updateUser(User user) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference(USERS);
-        ref.child(user.getEmail().replace(POINT,SEMICOLON)).
-                setValue(user);
+        ref.child(user.getEmail().replace(POINT,SEMICOLON)).setValue(user);
     }
     public static void getAllMerchants(CB_Merchant cb_merchant){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -162,6 +157,12 @@ public class MyRTFB {
             }
         });
     }
+    public static void removeMerchant(String merchantName, String userEmail) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference(MERCHANTS);
+        String key = merchantName.concat(UNDERSCORE).concat(userEmail.replace(POINT,SEMICOLON));
+        ref.child(key).removeValue();
+    }
     public static void updateMerchant(Merchant merchant) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference(MERCHANTS);
@@ -196,6 +197,47 @@ public class MyRTFB {
         });
 
     }
+    public static void uploadImg(String pathInDB, Uri file,CB_Img cb_img){
+        // Create a storage reference from our app
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        // Create a reference to "mountains.jpg"
+        StorageReference fileRef = storageRef.child("images/"+pathInDB);
+        // Register observers to listen for when the download is done or if it fails
+        if(file != null){
+            fileRef.putFile(file).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle unsuccessful uploads
+                    MySignal.getInstance().toast(exception.getMessage());
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    if(cb_img != null)
+                        cb_img.getOk();
+                }
+            });
+        }
 
-
+    }
+    public static StorageReference getImg(String pathInDB){
+        // Create a storage reference from our app
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference("images/"+pathInDB);
+        return storageRef;
+    }
+    public static void removeAlldir(String filePath) {
+        //remove data
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference("images/"+filePath);
+        storageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                // File deleted successfully
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Uh-oh, an error occurred!
+            }
+        });
+    }
 }

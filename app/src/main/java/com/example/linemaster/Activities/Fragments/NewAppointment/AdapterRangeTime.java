@@ -131,8 +131,6 @@ public class AdapterRangeTime extends RecyclerView.Adapter<AdapterRangeTime.Rang
                     holderClicked.range_time_item.setBackgroundResource(R.drawable.editback3);
                     holderClicked.range_time_text.setTextColor(ContextCompat.getColor(v.getContext(), R.color.white));
                     onTimeRangeClickListener.timeRangeClick(v, getItem(getAdapterPosition()), getAdapterPosition());
-
-
                 }
             });
         }

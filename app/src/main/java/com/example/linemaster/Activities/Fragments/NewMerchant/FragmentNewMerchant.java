@@ -4,14 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import com.example.linemaster.Activities.Callbacks.CallBackFragmentNewMerchant;
 import com.example.linemaster.Activities.Fragments.NewMerchant.CallbacksMerchant.CallBackFragmentNewMerchantDetails;
 import com.example.linemaster.Activities.Fragments.NewMerchant.CallbacksMerchant.CallBackFragmentNewMerchantPageStyle;
@@ -21,10 +18,11 @@ import com.example.linemaster.Data.Address;
 import com.example.linemaster.Data.BusinessDay;
 import com.example.linemaster.Data.Journal;
 import com.example.linemaster.Data.Merchant;
+import com.example.linemaster.Data.User;
+import com.example.linemaster.MyRTFB;
 import com.example.linemaster.MySignal;
 import com.example.linemaster.R;
 import com.google.android.material.button.MaterialButton;
-
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -39,9 +37,6 @@ public class FragmentNewMerchant extends Fragment {
     private FragmentNewMerchantPageStyle fragmentNewMerchantPageStyle;
     private CurrentFragmentNewMerchant currentFragmentNewMerchant;
     private Merchant merchant;
-
-
-
     public FragmentNewMerchant() {
     }
 
@@ -90,22 +85,34 @@ public class FragmentNewMerchant extends Fragment {
         new_merchant_BTN_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                merchant.setOwner(MySignal.getInstance().getUserEmail());
                 if (fragmentNewMerchantDetails.equals(currentFragmentNewMerchant)) {
                     if (fragmentNewMerchantDetails.getAllowToContinue()) {
-                        merchant.setMerchantName(fragmentNewMerchantDetails.getMerchant_name())
-                                .setMerchantPhone(fragmentNewMerchantDetails.getMerchant_phone())
-                                .setMerchantType(fragmentNewMerchantDetails.getTypes())
-                                .setDescription(fragmentNewMerchantDetails.getDescription())
-                                .setAddress(new Address()
-                                        .setLat(fragmentNewMerchantDetails.getLat())
-                                        .setLng(fragmentNewMerchantDetails.getLng()));
-                        new_merchant_BTN_previous.setVisibility(View.VISIBLE);
-                        currentFragmentNewMerchant = fragmentNewMerchantTimes;
-                        replaceFragments(fragmentNewMerchantTimes);
+                        MyRTFB.getUser(MySignal.getInstance().getUserEmail(), new MyRTFB.CB_User() {
+                            @Override
+                            public void getUserData(User user) {
+                                if(user.getMerchants() == null)
+                                    user.setMerchants(new ArrayList<>());
+                                if(!user.getMerchants().contains(fragmentNewMerchantDetails.getMerchant_name())){ /*fill details */
+                                    merchant.setMerchantName(fragmentNewMerchantDetails.getMerchant_name())
+                                            .setMerchantPhone(fragmentNewMerchantDetails.getMerchant_phone())
+                                            .setMerchantType(fragmentNewMerchantDetails.getTypes())
+                                            .setDescription(fragmentNewMerchantDetails.getDescription())
+                                            .setAddress(new Address()
+                                                    .setLat(fragmentNewMerchantDetails.getLat())
+                                                    .setLng(fragmentNewMerchantDetails.getLng()));
+                                    new_merchant_BTN_previous.setVisibility(View.VISIBLE);
+                                    currentFragmentNewMerchant = fragmentNewMerchantTimes;
+                                    replaceFragments(fragmentNewMerchantTimes);
+                                }else {
+                                    MySignal.getInstance().toast("The merchant name : ".concat(fragmentNewMerchantDetails.getMerchant_name()).concat(" already exist"));
+                                }
+                            }
+                        });
                     }
                 } else if (fragmentNewMerchantTimes.equals(currentFragmentNewMerchant)) {
                     if (fragmentNewMerchantTimes.getAllowToContinue()) {
-                        ArrayList<BusinessDay> businessDays = (ArrayList<BusinessDay>) fragmentNewMerchantTimes.getDayOfWeekBusinessDayHashMap().values().stream().collect(Collectors.toList());
+                        ArrayList<BusinessDay> businessDays = (ArrayList<BusinessDay>) new ArrayList<>(fragmentNewMerchantTimes.getDayOfWeekBusinessDayHashMap().values());
                         merchant.setBusinessDays(businessDays);
                         currentFragmentNewMerchant = fragmentNewMerchantServices;
                         replaceFragments(fragmentNewMerchantServices);
@@ -119,13 +126,13 @@ public class FragmentNewMerchant extends Fragment {
                     }
                 } else if (fragmentNewMerchantPageStyle.equals(currentFragmentNewMerchant)) {
                     if (fragmentNewMerchantPageStyle.getAllowToContinue()) {
-                        if(fragmentNewMerchantPageStyle.getLogoImage() == null){
+                        if(fragmentNewMerchantPageStyle.getUriImage() == null){
                             merchant.setLogo("");
                         }else{
-                            merchant.setLogo(MySignal.getInstance().BitMapToString(fragmentNewMerchantPageStyle.getLogoImage()));
+                            merchant.setLogo(fragmentNewMerchantPageStyle.getUriImage().toString());
                         }
                         merchant.setJournal(new Journal().setAppointments(new ArrayList<>()));
-                        callBackFragmentNewMerchant.theNewMerchantDone(merchant.setOwner(MySignal.getInstance().getUserEmail()));
+                        callBackFragmentNewMerchant.theNewMerchantDone(merchant);
                     }
                 }
             }

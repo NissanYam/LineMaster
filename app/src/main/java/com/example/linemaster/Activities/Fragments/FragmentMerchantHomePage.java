@@ -1,5 +1,6 @@
 package com.example.linemaster.Activities.Fragments;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,13 +14,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.linemaster.Activities.AdapterServiceView;
 import com.example.linemaster.Activities.Callbacks.CallBackFragmentMerchantHomePage;
-import com.example.linemaster.Activities.Fragments.NewMerchant.AdapterService;
 import com.example.linemaster.Data.Merchant;
 import com.example.linemaster.Data.Service;
+import com.example.linemaster.MyRTFB;
 import com.example.linemaster.MySignal;
 import com.example.linemaster.R;
 
-import java.util.ArrayList;
+import java.io.File;
 
 public class FragmentMerchantHomePage extends Fragment {
     private Merchant merchant;
@@ -94,11 +95,11 @@ public class FragmentMerchantHomePage extends Fragment {
 
     private void initViews() {
         merchant_page_merchant_name.setText(merchant.getMerchantName());
-        if(!merchant.getLogo().equals("0")) {
-            merchant_page_logo.setImageBitmap(MySignal.getInstance().StringToBitMap(merchant.getLogo()));
+        if(merchant.getLogo().equals("") || merchant.getLogo() == null) {
+            merchant_page_logo.setImageResource(R.drawable.noun_merchant_5111948);
         }
         else {
-            merchant_page_logo.setImageResource(R.drawable.noun_merchant_5111948);
+            MySignal.getInstance().putImgGlide(MyRTFB.getImg(merchant.getLogo()),merchant_page_logo);
         }
         merchant_home_page_description.setText(merchant.getDescription());
         merchant_home_page_Phone_number.setText(merchant.getMerchantPhone());

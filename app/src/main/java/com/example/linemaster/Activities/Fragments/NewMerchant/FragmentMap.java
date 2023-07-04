@@ -8,11 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import com.example.linemaster.Activities.Fragments.NewMerchant.CallbacksMerchant.CallBackFragmentMap;
 import com.example.linemaster.MySignal;
 import com.example.linemaster.R;
@@ -23,7 +21,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -51,6 +48,7 @@ public class FragmentMap extends Fragment implements OnMapReadyCallback,CurrentF
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
         SupportMapFragment supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+        assert supportMapFragment != null;
         supportMapFragment.getMapAsync(this);
         this.supportMapFragment = supportMapFragment;
         findViews(view);
@@ -74,23 +72,21 @@ public class FragmentMap extends Fragment implements OnMapReadyCallback,CurrentF
                 googleMap.clear();
                 String location = sv_places.getQuery().toString();
                 List<Address> addresses = null;
-                if(location != null || !location.isEmpty()){
-                    Geocoder geocoder = new Geocoder(getContext());
-                    try{
-                        addresses = geocoder.getFromLocationName(location,1);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                    Address address = null;
-                    if(addresses.size()>0){
-                        address = addresses.get(0);
-                        LatLng latLng = new LatLng(address.getLatitude(),address.getLongitude());
-                        callBackFragmentMap.sendLatLng(latLng);
-                        googleMap.addMarker(new MarkerOptions().position(latLng).title(location));
-                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
-                    }else {
-                        MySignal.getInstance().toast("Not found");
-                    }
+                Geocoder geocoder = new Geocoder(getContext());
+                try{
+                    addresses = geocoder.getFromLocationName(location,1);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                Address address = null;
+                if(addresses.size()>0){
+                    address = addresses.get(0);
+                    LatLng latLng = new LatLng(address.getLatitude(),address.getLongitude());
+                    callBackFragmentMap.sendLatLng(latLng);
+                    googleMap.addMarker(new MarkerOptions().position(latLng).title(location));
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
+                }else {
+                    MySignal.getInstance().toast("Not found");
                 }
                 return false;
             }
@@ -107,12 +103,12 @@ public class FragmentMap extends Fragment implements OnMapReadyCallback,CurrentF
     public void onMapReady(@NonNull GoogleMap googleMap) {
         this.googleMap = googleMap;
         LatLng centerMapLocation = new LatLng(0,0);
-        setCameraPosition(0,centerMapLocation);
+        setCameraPosition(centerMapLocation);
     }
-    private void setCameraPosition(int zoom, LatLng myLocation) {
+    private void setCameraPosition(LatLng myLocation) {
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(myLocation)
-                .zoom(zoom)
+                .zoom(0)
                 .build();
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }

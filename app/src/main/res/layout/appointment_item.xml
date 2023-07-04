@@ -46,13 +46,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:layout_marginVertical="8dp"
                 android:paddingRight="8dp">
 
                 <ImageView
@@ -76,7 +77,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginVertical="8dp"
                 android:gravity="center_vertical"
                 android:paddingRight="8dp">
 
@@ -101,7 +102,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginVertical="8dp"
                 android:gravity="center_vertical"
                 android:paddingRight="8dp">
 

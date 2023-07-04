@@ -9,29 +9,30 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
         android:elevation="50dp"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_weight="0.1"
             android:gravity="center"
             android:text="@string/Services"
             android:textSize="30dp"
-            android:textStyle="bold"
-            android:layout_weight="0.1"/>
+            android:textStyle="bold" />
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="10dp"
+            android:layout_margin="6dp"
+            android:layout_weight="1"
             android:elevation="22dp"
-            app:cardElevation="22dp"
             app:cardCornerRadius="25dp"
-            android:layout_weight="1">
+            app:cardElevation="22dp">
 
             <RelativeLayout
                 android:id="@+id/new_merchant_services_recycleView"
@@ -46,73 +47,82 @@
                     tools:listitem="@layout/services_item" />
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.1">
+            android:layout_weight="0.13">
+
             <EditText
                 android:id="@+id/new_merchant_services_EDT_new_service_name"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:hint="@string/ServicesName"
-                android:layout_weight="1" />
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:maxLines="1"
+                android:hint="@string/ServicesName" />
+
             <EditText
                 android:id="@+id/new_merchant_services_EDT_new_service_price"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="0.8"
                 android:hint="@string/Price"
-                android:inputType="numberDecimal"/>
+                android:inputType="numberDecimal" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
                 android:layout_weight="0.2"
+                android:gravity="center"
                 android:text="$$"
                 android:textSize="18dp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:layout_marginRight="10dp"
-                />
+                android:textStyle="bold" />
+
             <View
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.1"/>
+                android:layout_weight="0.1" />
+
             <EditText
                 android:id="@+id/new_merchant_services_EDT_new_service_hours"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.3"
-                android:inputType="numberDecimal"
-                android:hint="@string/hours"/>
+                android:hint="@string/hours"
+                android:inputType="numberDecimal" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.2"
-                android:text=":"
-                android:textStyle="bold"
+                android:layout_marginRight="5dp"
+                android:layout_weight="0.1"
                 android:gravity="center"
+                android:text=":"
                 android:textSize="23dp"
-                android:layout_marginRight="10dp"
-                />
+                android:textStyle="bold" />
+
             <EditText
                 android:id="@+id/new_merchant_services_EDT_new_service_minutes"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.3"
-                android:inputType="numberDecimal"
-                android:hint="@string/minutes"/>
+                android:hint="@string/minutes"
+                android:inputType="numberDecimal" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/new_merchant_services_BTN_new_service"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.1"
-            app:icon="@drawable/baseline_add_circle_outline_24"
-            app:iconSize="40dp"
             android:backgroundTint="@color/LeadingColor"
-            android:text="@string/newServices"/>
-
+            android:text="@string/newServices"
+            app:icon="@drawable/baseline_add_circle_outline_24"
+            app:iconSize="40dp" />
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>

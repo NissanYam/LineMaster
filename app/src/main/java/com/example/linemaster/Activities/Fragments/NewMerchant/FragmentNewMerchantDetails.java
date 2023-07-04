@@ -11,9 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
 import com.example.linemaster.Activities.Fragments.NewMerchant.CallbacksMerchant.CallBackFragmentMap;
 import com.example.linemaster.Activities.Fragments.NewMerchant.CallbacksMerchant.CallBackFragmentNewMerchantDetails;
 import com.example.linemaster.Data.MerchantType;
@@ -22,7 +19,6 @@ import com.example.linemaster.R;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.textfield.TextInputEditText;
-
 import java.util.ArrayList;
 
 
@@ -106,7 +102,7 @@ public class FragmentNewMerchantDetails extends Fragment implements CurrentFragm
     }
 
     /**
-     * TODO: check all fields in the layout and if every thing full its ok
+     * check all fields in the layout
      */
     @SuppressLint("ResourceAsColor")
     @Override
@@ -209,7 +205,7 @@ public class FragmentNewMerchantDetails extends Fragment implements CurrentFragm
         @Override
         public void sendLatLng(LatLng latLng) {
             lat = latLng.latitude;
-            lng = latLng.latitude;
+            lng = latLng.longitude;
             MySignal.getInstance().getAddress(lat, lng, new MySignal.Listener_String() {
                 @Override
                 public void getString(String str) {

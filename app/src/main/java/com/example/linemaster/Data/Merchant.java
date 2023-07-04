@@ -137,7 +137,7 @@ public class Merchant {
         int startMinutes = businessDay.getTimeRanges().getStartMinutes();
         int endHour = businessDay.getTimeRanges().getEndHour();
         int endMinutes = businessDay.getTimeRanges().getEndMinutes();
-        MySignal.getInstance().toast(startHour+":"+startMinutes+" - "+endHour+":"+endMinutes);
+        MySignal.getInstance().toast(businessDay.getDayOfWeek().toString()+" "+startHour+":"+startMinutes+" -- "+endHour+":"+endMinutes);
         // Round the start time to the nearest valid appointment start time (00, 15, or 30 minutes)
         int roundedStartMinutes = startMinutes;
         if (startMinutes % 15 != 0) {
@@ -186,21 +186,25 @@ public class Merchant {
     private boolean iterAppointmentsCheckConflicts(ArrayList<Appointment> appointmentsInDay, int startNewAppointmentHour, int startNewAppointmentMinutes, int serviceDurationMinutes) {
         int endNewAppointmentHour = startNewAppointmentHour+(startNewAppointmentMinutes+serviceDurationMinutes)/60;
         int endNewAppointmentMinute = (startNewAppointmentMinutes+serviceDurationMinutes)%60;
-        LocalTime startNew = LocalTime.of(startNewAppointmentHour,startNewAppointmentMinutes);
-        LocalTime endNew = LocalTime.of(endNewAppointmentHour,endNewAppointmentMinute);
-        for (Appointment appointment : appointmentsInDay) {
-            LocalTime startAppoint = LocalTime.of(appointment.getAppointmentTimeHour(),appointment.getAppointmentTimeMinute());
-            int endAppointHour = appointment.getAppointmentTimeHour()
-                    +appointment.getService().getServiceTimeHour()
-                    +((appointment.getAppointmentTimeMinute()+appointment.getService().getServiceTimeMinutes())/60);
-            int endAppointMinute = (appointment.getAppointmentTimeMinute()+appointment.getService().getServiceTimeMinutes())%60;
-            LocalTime endAppoint = LocalTime.of(endAppointHour,endAppointMinute);
-            if(startNew.compareTo(startAppoint) == 0 && endNew.compareTo(endAppoint) == 0)
-                return false;
-            if(endNew.isBefore(endAppoint) && endNew.isAfter(startAppoint))
-                return false;
-            if(startNew.isAfter(startAppoint) && startNew.isBefore(endAppoint))
-                return false;
+        try {
+            LocalTime startNew = LocalTime.of(startNewAppointmentHour,startNewAppointmentMinutes);
+            LocalTime endNew = LocalTime.of(endNewAppointmentHour,endNewAppointmentMinute);
+            for (Appointment appointment : appointmentsInDay) {
+                LocalTime startAppoint = LocalTime.of(appointment.getAppointmentTimeHour(),appointment.getAppointmentTimeMinute());
+                int endAppointHour = appointment.getAppointmentTimeHour()
+                        +appointment.getService().getServiceTimeHour()
+                        +((appointment.getAppointmentTimeMinute()+appointment.getService().getServiceTimeMinutes())/60);
+                int endAppointMinute = (appointment.getAppointmentTimeMinute()+appointment.getService().getServiceTimeMinutes())%60;
+                LocalTime endAppoint = LocalTime.of(endAppointHour,endAppointMinute);
+                if(startNew.compareTo(startAppoint) == 0 && endNew.compareTo(endAppoint) == 0)
+                    return false;
+                if(endNew.isBefore(endAppoint) && endNew.isAfter(startAppoint))
+                    return false;
+                if(startNew.isAfter(startAppoint) && startNew.isBefore(endAppoint))
+                    return false;
+            }
+        }catch (Exception e){
+            return false;
         }
         return true;
     }

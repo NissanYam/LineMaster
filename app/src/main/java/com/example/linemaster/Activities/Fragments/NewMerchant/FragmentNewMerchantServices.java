@@ -5,20 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.linemaster.Activities.Fragments.NewMerchant.CallbacksMerchant.CallBackFragmentNewMerchantServices;
 import com.example.linemaster.Data.Service;
 import com.example.linemaster.MySignal;
 import com.example.linemaster.R;
 import com.google.android.material.button.MaterialButton;
-
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class FragmentNewMerchantServices extends Fragment implements CurrentFragmentNewMerchant {

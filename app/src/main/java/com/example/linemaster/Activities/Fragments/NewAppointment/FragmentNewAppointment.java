@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -19,6 +18,7 @@ import com.example.linemaster.Data.Merchant;
 import com.example.linemaster.Data.Service;
 import com.example.linemaster.Data.TimeRange;
 import com.example.linemaster.Data.User;
+import com.example.linemaster.MySignal;
 import com.example.linemaster.R;
 import com.google.android.material.button.MaterialButton;
 import java.time.LocalDate;
@@ -141,6 +141,11 @@ public class FragmentNewAppointment extends Fragment {
         merchant_new_appointment_order_confirmation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(user.getEmail().equals(merchant.getOwner())){
+                    MySignal.getInstance().vibrate(100);
+                    MySignal.getInstance().toast("The owner cannot book a place at his place");
+                    return;
+                }
                 appointment.setMerchantName(merchant.getMerchantName()).
                         setMerchantOwner(merchant.getOwner()).
                         setCustomerEmail(user.getEmail()).

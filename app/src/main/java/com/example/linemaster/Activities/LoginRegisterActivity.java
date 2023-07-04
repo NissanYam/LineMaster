@@ -96,8 +96,8 @@ public class LoginRegisterActivity extends AppCompatActivity {
     private CallBackFragmentRegister callBackFragmentRegister = new CallBackFragmentRegister(){
         @Override
         public void RegisterUserSuccessful(String email , String firstName, String lastName) {
-            //TODO:Need to check with DB if the user exist!
-            //TODO:Sign up user
+            //Need to check with DB if the user exist!
+            //Sign up user
             /**Change to next intent*/
             MyRTFB.saveNewUser(new User().
                     setEmail(email).

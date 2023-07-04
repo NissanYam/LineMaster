@@ -4,6 +4,7 @@ import static android.app.Activity.RESULT_OK;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -13,14 +14,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-
 import com.example.linemaster.Activities.Callbacks.CallBackFragmentProfile;
 import com.example.linemaster.Data.User;
 import com.example.linemaster.MyRTFB;
@@ -30,7 +29,6 @@ import com.example.linemaster.R;
 public class FragmentProfile extends Fragment {
 
     private CallBackFragmentProfile callBackFragmentProfile;
-
     private ScrollView profile_view;
     private ImageView profile_profile_img;
     private TextView profile_full_name;
@@ -45,8 +43,9 @@ public class FragmentProfile extends Fragment {
     private TextView profile_edit_email;
     private ScrollView profile_edit;
     private User user;
+    private Uri uriImage;
     private Bitmap logoImage;
-
+    int SELECT_PICTURE = 200;
     public FragmentProfile() {
     }
 
@@ -54,11 +53,6 @@ public class FragmentProfile extends Fragment {
         this.callBackFragmentProfile = callBackFragmentProfile;
         return this;
     }
-
-    public User getUser() {
-        return user;
-    }
-
     public FragmentProfile setUser(User user) {
         this.user = user;
         return this;
@@ -103,11 +97,9 @@ public class FragmentProfile extends Fragment {
     }
 
     private void setValues() {
-        if (!user.getPicture().equals("0")) {
-            profile_profile_img.setImageBitmap(MySignal.getInstance().StringToBitMap(user.getPicture()));
-        } else {
-            profile_profile_img.setImageResource(R.drawable.profile_round_1342_svgrepo_com);
-        }
+        profile_profile_img.setImageResource(R.drawable.profile_round_1342_svgrepo_com);
+        if(user.getPicture() != null)
+            MySignal.getInstance().putImgGlide(MyRTFB.getImg(user.getPicture()),profile_profile_img);
         profile_full_name.setText(user.getFirstName()+" "+user.getLastName());
         profile_phone_number.setText(user.getPhoneNumber());
         profile_email.setText(user.getEmail());
@@ -119,11 +111,9 @@ public class FragmentProfile extends Fragment {
             public void onClick(View v) {
                 profile_view.setVisibility(View.GONE);
                 profile_edit.setVisibility(View.VISIBLE);
-                if (!user.getPicture().equals("0")) {
-                    profile_edit_profile_img.setImageBitmap(MySignal.getInstance().StringToBitMap(user.getPicture()));
-                } else {
-                    profile_edit_profile_img.setImageResource(R.drawable.profile_round_1342_svgrepo_com);
-                }
+                profile_edit_profile_img.setImageResource(R.drawable.profile_round_1342_svgrepo_com);
+                if (!user.getPicture().equals("0"))
+                    MySignal.getInstance().putImgGlide(MyRTFB.getImg(user.getPicture()),profile_edit_profile_img);
                 profile_edit_first_name.setText(user.getFirstName());
                 profile_edit_last_name.setText(user.getLastName());
                 profile_edit_phone_number.setText(user.getPhoneNumber());
@@ -136,8 +126,17 @@ public class FragmentProfile extends Fragment {
                 user.setFirstName(profile_edit_first_name.getText().toString());
                 user.setLastName(profile_edit_last_name.getText().toString());
                 user.setPhoneNumber(profile_edit_phone_number.getText().toString());
+                if(uriImage != null)
+                    user.setPicture(user.getEmail());
                 setValues();
                 MyRTFB.updateUser(user);
+                MyRTFB.uploadImg(user.getPicture(), uriImage, new MyRTFB.CB_Img() {
+                    @Override
+                    public void getOk() {
+                        if (!user.getPicture().equals("0"))
+                            MySignal.getInstance().putImgGlide(MyRTFB.getImg(user.getPicture()),profile_profile_img);
+                    }
+                });
                 profile_view.setVisibility(View.VISIBLE);
                 profile_edit.setVisibility(View.GONE);
 
@@ -146,8 +145,7 @@ public class FragmentProfile extends Fragment {
         profile_edit_profile_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startCamera.launch(cameraIntent);
+                imageChooser();
             }
         });
     }
@@ -162,7 +160,6 @@ public class FragmentProfile extends Fragment {
                     profileImage.setImageBitmap(image);
                     profileImage.setPadding(4, 4, 4, 4); // Set padding if needed
                     profileImage.invalidate(); // Invalidate the view to reflect the changes
-                    user.setPicture(MySignal.getInstance().BitMapToString(logoImage));
                 }
             });
     private void checkPermissions() {
@@ -170,5 +167,39 @@ public class FragmentProfile extends Fragment {
                 getActivity(),
                 new String[]{android.Manifest.permission.CAMERA},
                 333);
+    }
+
+    /***/
+    void imageChooser() {
+
+        // create an instance of the
+        // intent of the type image
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+
+        // pass the constant to compare it
+        // with the returned requestCode
+        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
+    }
+
+    // this function is triggered when user
+    // selects the image from the imageChooser
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+
+            // compare the resultCode with the
+            // SELECT_PICTURE constant
+            if (requestCode == SELECT_PICTURE) {
+                // Get the url of the image from data
+                uriImage = data.getData();
+                if (null != uriImage) {
+                    // update the preview image in the layout
+                    profile_edit_profile_img.setImageURI(uriImage);
+                }
+            }
+        }
     }
 }

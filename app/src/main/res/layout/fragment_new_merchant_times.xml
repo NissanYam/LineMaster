@@ -9,335 +9,365 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="6dp"
         android:elevation="50dp"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_weight="0.08"
             android:gravity="center"
             android:text="@string/ActivityTime"
             android:textSize="30dp"
-            android:textStyle="bold"
-            android:layout_weight="0.1"/>
+            android:textStyle="bold" />
+
         <androidx.cardview.widget.CardView
             android:id="@+id/new_merchant_time_card"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:cardCornerRadius="20dp"
+            android:layout_weight="1"
             android:elevation="16dp"
-            app:cardElevation="16dp"
-            android:layout_weight="1">
+            app:cardCornerRadius="15dp"
+            app:cardElevation="16dp">
+
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:orientation="horizontal"
+                    android:layout_marginVertical="4dp"
                     android:layout_weight="1"
-                    android:layout_marginVertical="10dp">
+                    android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="@string/Sunday"
                         android:layout_weight="1"
+                        android:text="@string/Sunday"
                         android:textSize="16dp"
-                        android:textStyle="italic"
-                        />
+                        android:maxLines="1"
+                        android:textStyle="italic" />
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/new_merchant_time_startTime_Sunday"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="@string/startTime"
+                        android:layout_marginHorizontal="5dp"
                         android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/LeadingColor"/>
+                        android:backgroundTint="@color/LeadingColor"
+                        android:text="@string/startTime"
+                        android:textColor="@color/white" />
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/new_merchant_time_endTime_Sunday"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="@string/endTime"
+                        android:layout_marginHorizontal="5dp"
                         android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/goodgrey"/>
+                        android:backgroundTint="@color/goodgrey"
+                        android:text="@string/endTime"
+                        android:textColor="@color/white" />
+
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/new_merchant_time_work_Sunday"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginHorizontal="5dp"
                         android:layout_weight="0.5"
-                        android:clickable="true"
-                        android:layout_marginHorizontal="10dp"
-                        android:theme="@style/SCBSwitch"
                         android:checked="false"
-                        />
+                        android:clickable="true"
+                        android:theme="@style/SCBSwitch" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
+
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:orientation="horizontal"
+                    android:layout_marginVertical="4dp"
                     android:layout_weight="1"
-                    android:layout_marginVertical="10dp">
+                    android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="@string/Monday"
                         android:layout_weight="1"
+                        android:text="@string/Monday"
                         android:textSize="16dp"
-                        android:textStyle="italic"
-                        />
+                        android:maxLines="1"
+                        android:textStyle="italic" />
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/new_merchant_time_startTime_Monday"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="@string/startTime"
+                        android:layout_marginHorizontal="5dp"
                         android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/LeadingColor"/>
+                        android:backgroundTint="@color/LeadingColor"
+                        android:text="@string/startTime"
+                        android:textColor="@color/white" />
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/new_merchant_time_endTime_Monday"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="@string/endTime"
+                        android:layout_marginHorizontal="5dp"
                         android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/goodgrey"/>
+                        android:backgroundTint="@color/goodgrey"
+                        android:text="@string/endTime"
+                        android:textColor="@color/white" />
+
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/new_merchant_time_work_Monday"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginHorizontal="5dp"
                         android:layout_weight="0.5"
-                        android:clickable="true"
-                        android:layout_marginHorizontal="10dp"
-                        android:theme="@style/SCBSwitch"
                         android:checked="false"
-                        />
+                        android:clickable="true"
+                        android:theme="@style/SCBSwitch" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
+
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:orientation="horizontal"
+                    android:layout_marginVertical="4dp"
                     android:layout_weight="1"
-                    android:layout_marginVertical="10dp">
+                    android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="@string/Tuesday"
                         android:layout_weight="1"
+                        android:text="@string/Tuesday"
                         android:textSize="16dp"
-                        android:textStyle="italic"
-                        />
+                        android:maxLines="1"
+                        android:textStyle="italic" />
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/new_merchant_time_startTime_Tuesday"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="@string/startTime"
+                        android:layout_marginHorizontal="5dp"
                         android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/LeadingColor"/>
+                        android:backgroundTint="@color/LeadingColor"
+                        android:text="@string/startTime"
+                        android:textColor="@color/white" />
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/new_merchant_time_endTime_Tuesday"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="@string/endTime"
+                        android:layout_marginHorizontal="5dp"
                         android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/goodgrey"/>
+                        android:backgroundTint="@color/goodgrey"
+                        android:text="@string/endTime"
+                        android:textColor="@color/white" />
+
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/new_merchant_time_work_Tuesday"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginHorizontal="5dp"
                         android:layout_weight="0.5"
-                        android:clickable="true"
-                        android:layout_marginHorizontal="10dp"
-                        android:theme="@style/SCBSwitch"
                         android:checked="false"
-                        />
+                        android:clickable="true"
+                        android:theme="@style/SCBSwitch" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
+
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:orientation="horizontal"
+                    android:layout_marginVertical="4dp"
                     android:layout_weight="1"
-                    android:layout_marginVertical="10dp">
+                    android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="@string/Wednesday"
                         android:layout_weight="1"
+                        android:text="@string/Wednesday"
                         android:textSize="16dp"
-                        android:textStyle="italic"
-                        />
+                        android:maxLines="1"
+                        android:textStyle="italic" />
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/new_merchant_time_startTime_Wednesday"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="@string/startTime"
+                        android:layout_marginHorizontal="5dp"
                         android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/LeadingColor"/>
+                        android:backgroundTint="@color/LeadingColor"
+                        android:text="@string/startTime"
+                        android:textColor="@color/white" />
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/new_merchant_time_endTime_Wednesday"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="@string/endTime"
+                        android:layout_marginHorizontal="5dp"
                         android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/goodgrey"/>
+                        android:backgroundTint="@color/goodgrey"
+                        android:text="@string/endTime"
+                        android:textColor="@color/white" />
+
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/new_merchant_time_work_Wednesday"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginHorizontal="5dp"
                         android:layout_weight="0.5"
-                        android:clickable="true"
-                        android:layout_marginHorizontal="10dp"
-                        android:theme="@style/SCBSwitch"
                         android:checked="false"
-                        />
+                        android:clickable="true"
+                        android:theme="@style/SCBSwitch" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
+
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:orientation="horizontal"
+                    android:layout_marginVertical="4dp"
                     android:layout_weight="1"
-                    android:layout_marginVertical="10dp">
+                    android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="@string/Thursday"
                         android:layout_weight="1"
+                        android:text="@string/Thursday"
                         android:textSize="16dp"
-                        android:textStyle="italic"
-                        />
+                        android:maxLines="1"
+                        android:textStyle="italic" />
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/new_merchant_time_startTime_Thursday"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="@string/startTime"
+                        android:layout_marginHorizontal="5dp"
                         android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/LeadingColor"/>
+                        android:backgroundTint="@color/LeadingColor"
+                        android:text="@string/startTime"
+                        android:textColor="@color/white" />
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/new_merchant_time_endTime_Thursday"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="@string/endTime"
+                        android:layout_marginHorizontal="5dp"
                         android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/goodgrey"/>
+                        android:backgroundTint="@color/goodgrey"
+                        android:text="@string/endTime"
+                        android:textColor="@color/white" />
+
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/new_merchant_time_work_Thursday"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginHorizontal="5dp"
                         android:layout_weight="0.5"
-                        android:clickable="true"
-                        android:layout_marginHorizontal="10dp"
-                        android:theme="@style/SCBSwitch"
                         android:checked="false"
-                        />
+                        android:clickable="true"
+                        android:theme="@style/SCBSwitch" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
+
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:orientation="horizontal"
+                    android:layout_marginVertical="4dp"
                     android:layout_weight="1"
-                    android:layout_marginVertical="10dp">
+                    android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="@string/Friday"
                         android:layout_weight="1"
+                        android:text="@string/Friday"
                         android:textSize="16dp"
-                        android:textStyle="italic"
-                        />
+                        android:maxLines="1"
+                        android:textStyle="italic" />
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/new_merchant_time_startTime_Friday"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="@string/startTime"
+                        android:layout_marginHorizontal="5dp"
                         android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/LeadingColor"/>
+                        android:backgroundTint="@color/LeadingColor"
+                        android:text="@string/startTime"
+                        android:textColor="@color/white" />
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/new_merchant_time_endTime_Friday"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="@string/endTime"
+                        android:layout_marginHorizontal="5dp"
                         android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/goodgrey"/>
+                        android:backgroundTint="@color/goodgrey"
+                        android:text="@string/endTime"
+                        android:textColor="@color/white" />
+
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/new_merchant_time_work_Friday"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginHorizontal="5dp"
                         android:layout_weight="0.5"
-                        android:clickable="true"
-                        android:layout_marginHorizontal="10dp"
-                        android:theme="@style/SCBSwitch"
                         android:checked="false"
-                        />
+                        android:clickable="true"
+                        android:theme="@style/SCBSwitch" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
+
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:orientation="horizontal"
+                    android:layout_marginVertical="4dp"
                     android:layout_weight="1"
-                    android:layout_marginVertical="10dp">
+                    android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="@string/Saturday"
                         android:layout_weight="1"
+                        android:text="@string/Saturday"
                         android:textSize="16dp"
-                        android:textStyle="italic"
-                        />
+                        android:maxLines="1"
+                        android:textStyle="italic" />
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/new_merchant_time_startTime_Saturday"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="@string/startTime"
+                        android:layout_marginHorizontal="5dp"
                         android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/LeadingColor"/>
+                        android:backgroundTint="@color/LeadingColor"
+                        android:text="@string/startTime"
+                        android:textColor="@color/white" />
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/new_merchant_time_endTime_Saturday"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="@string/endTime"
+                        android:layout_marginHorizontal="5dp"
                         android:layout_weight="1"
-                        android:layout_marginHorizontal="10dp"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/goodgrey"/>
+                        android:backgroundTint="@color/goodgrey"
+                        android:text="@string/endTime"
+                        android:textColor="@color/white" />
+
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/new_merchant_time_work_Saturday"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginHorizontal="5dp"
                         android:layout_weight="0.5"
-                        android:clickable="true"
-                        android:layout_marginHorizontal="10dp"
-                        android:theme="@style/SCBSwitch"
                         android:checked="false"
-                        />
+                        android:clickable="true"
+                        android:theme="@style/SCBSwitch" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -345,7 +375,6 @@
 
 
         </androidx.cardview.widget.CardView>
-
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>

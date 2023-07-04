@@ -1,8 +1,8 @@
 package com.example.linemaster.Activities;
 
-import static com.example.linemaster.Activities.Fragments.FragmentCalendar.USER;
-
+import static com.example.linemaster.Activities.Fragments.Calender.FragmentCalendar.USER;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,7 +21,7 @@ import com.example.linemaster.Activities.Callbacks.CallBackFragmentNewMerchant;
 import com.example.linemaster.Activities.Callbacks.CallBackFragmentProfile;
 import com.example.linemaster.Activities.Fragments.AllMerchantsUser.FragmentAllMerchants;
 import com.example.linemaster.Activities.Fragments.AllMerchantsUser.FragmentMerchantOwnerPage;
-import com.example.linemaster.Activities.Fragments.FragmentCalendar;
+import com.example.linemaster.Activities.Fragments.Calender.FragmentCalendar;
 import com.example.linemaster.Activities.Fragments.FragmentHome;
 import com.example.linemaster.Activities.Fragments.FragmentMerchantHomePage;
 import com.example.linemaster.Activities.Fragments.NewAppointment.CallBackFragmentNewAppointment;
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (i == R.drawable.noun_new_5563868) { /// new merchant
                     replaceFragments(fragmentNewMerchant);
                 } else if (i == R.drawable.noun_merchant_5111948) { /// all user merchants
-                    //TODO: get all merchant from DB and send team to fragment
+                    //get all merchant from DB and send team to fragment
                     allUserMerchants();
                 }else if (i == R.drawable.calendar_svgrepo_com) { //my calender
                     myCalender();
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     private void myCalender() {
-        //TODO:get all appointments
+        //get all user appointments
         MyRTFB.getUser(MySignal.getInstance().getUserEmail(), new MyRTFB.CB_User() {
             @Override
             public void getUserData(User user) {
@@ -226,7 +226,15 @@ public class MainActivity extends AppCompatActivity {
     private CallBackFragmentNewMerchant callBackFragmentNewMerchant = new CallBackFragmentNewMerchant() {
         @Override
         public void theNewMerchantDone(Merchant merchant) {
-            //TODO: add merchant to DB
+            //add merchant to DB
+            if(!merchant.getLogo().equals("")) {
+                Uri fileUri = Uri.parse(merchant.getLogo());
+                merchant.setLogo(String.valueOf(Uri.parse(
+                        merchant.getOwner()
+                                .concat("_")
+                                .concat(merchant.getMerchantName()))));
+                MyRTFB.uploadImg(merchant.getLogo(), fileUri,null);
+            }
             MyRTFB.saveNewMerchant(merchant);
             main_IMG_return.setVisibility(View.INVISIBLE);
             main_circleMenu.setVisibility(View.VISIBLE);
@@ -234,6 +242,10 @@ public class MainActivity extends AppCompatActivity {
         }
     };
     private CallBackFragmentMerchantOwnerPage callBackFragmentMerchantOwnerPage = new CallBackFragmentMerchantOwnerPage() {
+        @Override
+        public void returnToHome() {
+            homePage();
+        }
     };
     private CallBackFragmentMerchantHomePage callBackFragmentMerchantHomePage = new CallBackFragmentMerchantHomePage() {
         @Override
@@ -261,5 +273,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
-
 }
