@@ -1,7 +1,7 @@
 # LineMaster
 LineMaster is an Android application developed using Java and Android Studio. It serves as a comprehensive reservation and queue management tool for businesses. With LineMaster, businesses can efficiently manage their reservations, working hours, and services, ensuring a smooth and conflict-free experience for both merchants and customers.
 
-#Features
+## Features
 User Authentication: Users can sign up and sign in using their email, password (minimum 6 characters), and username.
 
 Merchant Profile: Upon signing in, users can create and manage their own merchant profile. This allows businesses to customize their information, such as contact details and description.
