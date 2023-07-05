@@ -76,7 +76,11 @@ public class FragmentHome extends Fragment {
         recyclerview_list_business.setAdapter(adapterAllMerchantsUser);
         adapterAllMerchantsUser.notifyDataSetChanged();
         initViews();
+    }
 
+    public void refreshData(){
+        adapterAllMerchantsUser.setMerchants(merchants);
+        adapterAllMerchantsUser.notifyDataSetChanged();
     }
 
     private void initViews() {

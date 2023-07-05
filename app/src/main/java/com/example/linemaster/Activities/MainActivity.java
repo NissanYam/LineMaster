@@ -99,8 +99,9 @@ public class MainActivity extends AppCompatActivity {
         main_circleMenu.setOnMenuItemClickListener(new OnCircleMenuItemClicked() {
             @Override
             public void onMenuItemClicked(int i) {
-                if(i == R.drawable.noun_search_5784563){ /// home
+                if(i == R.drawable.baseline_refresh_24){ /// home
                     homePage();
+                    fragmentHome.refreshData();
                     return;
                 } else if (i == R.drawable.noun_new_5563868) { /// new merchant
                     replaceFragments(fragmentNewMerchant);
@@ -238,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
             MyRTFB.saveNewMerchant(merchant);
             main_IMG_return.setVisibility(View.INVISIBLE);
             main_circleMenu.setVisibility(View.VISIBLE);
-            replaceFragments(fragmentHome);
+            homePage();
         }
     };
     private CallBackFragmentMerchantOwnerPage callBackFragmentMerchantOwnerPage = new CallBackFragmentMerchantOwnerPage() {

@@ -39,12 +39,10 @@ public class FragmentNewMerchant extends Fragment {
     private Merchant merchant;
     public FragmentNewMerchant() {
     }
-
     public FragmentNewMerchant setCallBackFragmentNewMerchant(CallBackFragmentNewMerchant callBackFragmentNewMerchant) {
         this.callBackFragmentNewMerchant = callBackFragmentNewMerchant;
         return this;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +57,6 @@ public class FragmentNewMerchant extends Fragment {
         this.currentFragmentNewMerchant = fragmentNewMerchantDetails;
         merchant = new Merchant();
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -67,12 +64,10 @@ public class FragmentNewMerchant extends Fragment {
         findViews(view);
         return view;
     }
-
     private void findViews(View view) {
         new_merchant_BTN_previous = view.findViewById(R.id.new_merchant_BTN_previous);
         new_merchant_BTN_next = view.findViewById(R.id.new_merchant_BTN_next);
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -80,7 +75,6 @@ public class FragmentNewMerchant extends Fragment {
         initViews();
         new_merchant_BTN_previous.setVisibility(View.INVISIBLE);
     }
-
     private void initViews() {
         new_merchant_BTN_next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,14 +154,12 @@ public class FragmentNewMerchant extends Fragment {
             }
         });
     }
-
     private void replaceFragments(Fragment fragment) {
         FragmentManager fragmentManager = getChildFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.new_merchant_FL, fragment);
         fragmentTransaction.commit();
     }
-
     private CallBackFragmentNewMerchantDetails callBackFragmentNewMerchantDetails = new CallBackFragmentNewMerchantDetails() {
     };
     private CallBackFragmentNewMerchantTimes callBackFragmentNewMerchantTimes = new CallBackFragmentNewMerchantTimes() {
