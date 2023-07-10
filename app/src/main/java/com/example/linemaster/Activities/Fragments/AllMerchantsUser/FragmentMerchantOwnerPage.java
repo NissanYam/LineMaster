@@ -76,14 +76,6 @@ public class FragmentMerchantOwnerPage extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        fragmentNewMerchantTimes = new FragmentNewMerchantTimes();
-        fragmentNewMerchantTimes.setCallBackFragmentNewMerchantTimes(this.callBackFragmentNewMerchantTimes);
-        fragmentMap = new FragmentMap();
-        fragmentMap.setCallBackFragmentMap(this.callBackFragmentMap);
-        fragmentNewMerchantServices = new FragmentNewMerchantServices();
-        fragmentNewMerchantServices.setCallBackFragmentNewMerchantServices(this.callBackFragmentNewMerchantServices);
-        fragmentCalendar = new FragmentCalendar();
-        fragmentCalendar.setCallBackFragmentCalendar(this.callBackFragmentCalendar);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -124,78 +116,17 @@ public class FragmentMerchantOwnerPage extends Fragment {
         }
         merchant_page_phone.setText(merchant.getMerchantPhone());
         merchant_page_description.setText(merchant.getDescription());
-        merchant_page_BTN_address.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                merchant_page_details.setVisibility(View.GONE);
-                merchant_page.setVisibility(View.VISIBLE);
-                replaceFragments(fragmentMap);
-                currentFragmentMerchantPage = fragmentMap;
-            }
-        });
-        merchant_page_BTN_hours.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onClick(View v) {
-                merchant_page_details.setVisibility(View.GONE);
-                merchant_page.setVisibility(View.VISIBLE);
-                fragmentNewMerchantTimes.setMerchant(merchant);
-                replaceFragments(fragmentNewMerchantTimes);
-                currentFragmentMerchantPage = fragmentNewMerchantTimes;
-            }
-        });
-        merchant_page_BTN_services.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                merchant_page_details.setVisibility(View.GONE);
-                merchant_page.setVisibility(View.VISIBLE);
-                fragmentNewMerchantServices
-                        .setServices(merchant.getServices());
-                replaceFragments(fragmentNewMerchantServices);
-                currentFragmentMerchantPage = fragmentNewMerchantServices;
-            }
-        });
-        merchant_page_BTN_calender.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                merchant_page_details.setVisibility(View.GONE);
-                merchant_page.setVisibility(View.VISIBLE);
-                fragmentCalendar.setAppointments(merchant.getJournal());
-                fragmentCalendar.setTheViewer(MERCHANT);
-                replaceFragments(fragmentCalendar);
-                currentFragmentMerchantPage = fragmentCalendar;
-            }
-        });
-        merchant_page_owner_BTN_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                merchant_page.setVisibility(View.GONE);
-                merchant_page_details.setVisibility(View.VISIBLE);
-            }
-        });
-        merchant_page_owner_BTN_save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(currentFragmentMerchantPage.equals(fragmentMap)){
-                    if(lat != 0.0 && lng != 0.0) {
-                        merchant.setAddress(new Address().setLng(lng).setLat(lat));
-                    }
-                    lng = 0.0;
-                    lat = 0.0;
-                }else if (currentFragmentMerchantPage.equals(fragmentNewMerchantTimes)){
-                    ArrayList<BusinessDay> businessDays = (ArrayList<BusinessDay>) new ArrayList<>(fragmentNewMerchantTimes.
-                            getDayOfWeekBusinessDayHashMap().
-                            values());
-                    merchant.setBusinessDays(businessDays);
-                } else if (currentFragmentMerchantPage.equals(fragmentNewMerchantServices)) {
-                    merchant.setServices(fragmentNewMerchantServices.getServices());
-                }
-                MyRTFB.updateMerchant(merchant);
-                currentFragmentMerchantPage = null;
-                merchant_page.setVisibility(View.GONE);
-                merchant_page_details.setVisibility(View.VISIBLE);
-            }
-        });
+        // open map fragment
+        merchant_page_BTN_address.setOnClickListener(v -> openMap());
+        // open hours fragment
+        merchant_page_BTN_hours.setOnClickListener(v -> openActivityTime());
+        // open service fragment
+        merchant_page_BTN_services.setOnClickListener(v -> openServices());
+        // open calender fragment
+        merchant_page_BTN_calender.setOnClickListener(v -> openCalender());
+
+        merchant_page_owner_BTN_cancel.setOnClickListener(v -> cancelClick());
+        merchant_page_owner_BTN_save.setOnClickListener(v -> saveClick());
         merchant_page_style_logoIMG.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -204,6 +135,73 @@ public class FragmentMerchantOwnerPage extends Fragment {
         });
         merchant_page_remove_merchant.setOnClickListener(view -> removeMerchant());
     }
+
+    private void saveClick() {
+        if(currentFragmentMerchantPage.equals(fragmentMap)){
+            if(lat != 0.0 && lng != 0.0) {
+                merchant.setAddress(new Address().setLng(lng).setLat(lat));
+            }
+            lng = 0.0;
+            lat = 0.0;
+        }else if (currentFragmentMerchantPage.equals(fragmentNewMerchantTimes)){
+            if(currentFragmentMerchantPage.getAllowToContinue()){
+                ArrayList<BusinessDay> businessDays = (ArrayList<BusinessDay>) new ArrayList<>(fragmentNewMerchantTimes.
+                        getDayOfWeekBusinessDayHashMap().
+                        values()); /// take the new time hours
+                merchant.setBusinessDays(businessDays);
+            }
+        } else if (currentFragmentMerchantPage.equals(fragmentNewMerchantServices)) {
+            merchant.setServices(fragmentNewMerchantServices.getServices());
+        }
+        MyRTFB.updateMerchant(merchant);
+        currentFragmentMerchantPage = null;
+        merchant_page.setVisibility(View.GONE);
+        merchant_page_details.setVisibility(View.VISIBLE);
+    }
+
+    private void cancelClick() {
+        merchant_page.setVisibility(View.GONE);
+        merchant_page_details.setVisibility(View.VISIBLE);
+    }
+
+    private void openCalender() {
+        fragmentCalendar = new FragmentCalendar();
+        merchant_page_details.setVisibility(View.GONE);
+        merchant_page.setVisibility(View.VISIBLE);
+        fragmentCalendar.setAppointments(merchant.getJournal());
+        fragmentCalendar.setTheViewer(MERCHANT);
+        replaceFragments(fragmentCalendar);
+        currentFragmentMerchantPage = fragmentCalendar;
+    }
+
+    private void openServices() {
+        merchant_page_details.setVisibility(View.GONE);
+        merchant_page.setVisibility(View.VISIBLE);
+        fragmentNewMerchantServices = new FragmentNewMerchantServices();
+        fragmentNewMerchantServices
+                .setServices(merchant.getServices());
+        replaceFragments(fragmentNewMerchantServices);
+        currentFragmentMerchantPage = fragmentNewMerchantServices;
+    }
+
+    private void openActivityTime() {
+        merchant_page_details.setVisibility(View.GONE);
+        merchant_page.setVisibility(View.VISIBLE);
+        fragmentNewMerchantTimes = new FragmentNewMerchantTimes();
+        replaceFragments(fragmentNewMerchantTimes);
+        fragmentNewMerchantTimes.setMerchant(merchant);
+        currentFragmentMerchantPage = fragmentNewMerchantTimes;
+    }
+
+    private void openMap() {
+        fragmentMap = new FragmentMap();
+        fragmentMap.setCallBackFragmentMap(callBackFragmentMap);
+        merchant_page_details.setVisibility(View.GONE);
+        merchant_page.setVisibility(View.VISIBLE);
+        replaceFragments(fragmentMap);
+        currentFragmentMerchantPage = fragmentMap;
+    }
+
     private void removeMerchant() {
         /*remove merchant in user*/
         removeAllAppointments();
@@ -246,8 +244,7 @@ public class FragmentMerchantOwnerPage extends Fragment {
         fragmentTransaction.replace(R.id.fragment_merchant_page, fragment);
         fragmentTransaction.commit();
     }
-    private CallBackFragmentNewMerchantTimes callBackFragmentNewMerchantTimes = new CallBackFragmentNewMerchantTimes() {
-    };
+
     private double lat = 0.0,lng = 0.0;
     private CallBackFragmentMap callBackFragmentMap = new CallBackFragmentMap() {
         @Override
@@ -255,10 +252,6 @@ public class FragmentMerchantOwnerPage extends Fragment {
             lat = latLng.latitude;
             lng = latLng.longitude;
         }
-    };
-    private CallBackFragmentNewMerchantServices callBackFragmentNewMerchantServices = new CallBackFragmentNewMerchantServices() {
-    };
-    private CallBackFragmentCalendar callBackFragmentCalendar = new CallBackFragmentCalendar() {
     };
     void imageChooser() {
 

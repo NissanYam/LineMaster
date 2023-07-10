@@ -376,5 +376,12 @@ public class FragmentNewMerchantTimes extends Fragment implements CurrentFragmen
             new_merchant_time_startTime_Saturday.setText(R.string.startTime);
             new_merchant_time_endTime_Saturday.setText(R.string.endTime);
         }
+        if(merchant.getBusinessDays() != null){
+            for (BusinessDay businessDay: merchant.getBusinessDays()) {
+                if(this.dayOfWeekBusinessDayHashMap != null){
+                    dayOfWeekBusinessDayHashMap.put(businessDay.getDayOfWeek(),businessDay);
+                }
+            }
+        }
     }
 }
