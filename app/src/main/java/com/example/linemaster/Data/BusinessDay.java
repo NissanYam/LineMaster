@@ -36,4 +36,11 @@ public class BusinessDay {
         this.active = active;
         return this;
     }
+    public BusinessDay clone(){
+        BusinessDay businessDay = new BusinessDay();
+        businessDay.active = this.active;
+        businessDay.dayOfWeek = this.dayOfWeek;
+        businessDay.timeRanges = this.timeRanges.clone();
+        return businessDay;
+    }
 }

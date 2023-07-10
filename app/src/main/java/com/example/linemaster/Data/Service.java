@@ -53,4 +53,12 @@ public class Service {
                         return true;
         return false;
     }
+    public Service clone(){
+        Service service = new Service();
+        service.price = this.price;
+        service.serviceName = this.serviceName;
+        service.serviceTimeHour = this.serviceTimeHour;
+        service.serviceTimeMinutes = this.serviceTimeMinutes;
+        return service;
+    }
 }

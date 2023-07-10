@@ -2,6 +2,7 @@ package com.example.linemaster.Data;
 
 import android.os.Build;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import com.example.linemaster.MySignal;
@@ -223,5 +224,29 @@ public class Merchant {
                 return businessDay;
         }
         return null;
+    }
+
+    public Merchant clone() {
+        Merchant merchant = new Merchant();
+        merchant.address = this.address != null ? this.address.clone() : null;
+        merchant.merchantName = this.merchantName;
+        merchant.merchantPhone = this.merchantPhone;
+        merchant.merchantType = new ArrayList<>();
+        for (MerchantType merchantTypeIter : this.merchantType) {
+            merchant.merchantType.add(merchantTypeIter);
+        }
+        merchant.owner = this.owner;
+        merchant.logo = this.logo;
+        merchant.journal = this.journal != null ? (Journal) this.journal.clone() : null;
+        merchant.description = this.description;
+        merchant.businessDays = new ArrayList<>();
+        for (BusinessDay businessDay:this.businessDays) {
+            merchant.businessDays.add(businessDay.clone());
+        }
+        merchant.services = new ArrayList<>();
+        for (Service service : this.services) {
+            merchant.services.add(service.clone());
+        }
+        return merchant;
     }
 }

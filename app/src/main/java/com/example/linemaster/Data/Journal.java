@@ -48,4 +48,12 @@ public class Journal {
             }
         }
     }
+    public Journal clone(){
+        Journal journal = new Journal();
+        journal.appointments = new ArrayList<>();
+        for (Appointment appointment : this.appointments) {
+            journal.appointments.add(appointment.clone());
+        }
+        return journal;
+    }
 }

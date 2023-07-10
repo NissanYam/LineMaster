@@ -107,4 +107,17 @@ public class Appointment {
                                             return true;
         return false;
     }
+    public Appointment clone(){
+        Appointment appointment = new Appointment();
+        appointment.customerEmail = this.customerEmail;
+        appointment.appointmentTimeHour = this.appointmentTimeHour;
+        appointment.appointmentTimeMinute = this.appointmentTimeMinute;
+        appointment.merchantName = this.merchantName;
+        appointment.merchantOwner = this.merchantOwner;
+        appointment.day = this.day;
+        appointment.month = this.month;
+        appointment.year = this.year;
+        appointment.service = service.clone();
+        return appointment;
+    }
 }
