@@ -52,4 +52,12 @@ public class TimeRange {
             return true;
         return false;
     }
+    public TimeRange clone(){
+        TimeRange timeRange = new TimeRange();
+        timeRange.endHour = this.endHour;
+        timeRange.endMinutes = this.endMinutes;
+        timeRange.startHour = this.startHour;
+        timeRange.startMinutes = this.startMinutes;
+        return timeRange;
+    }
 }

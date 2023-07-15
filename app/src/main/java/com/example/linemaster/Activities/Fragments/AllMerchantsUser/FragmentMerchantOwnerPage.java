@@ -179,7 +179,7 @@ public class FragmentMerchantOwnerPage extends Fragment {
         merchant_page.setVisibility(View.VISIBLE);
         fragmentNewMerchantServices = new FragmentNewMerchantServices();
         fragmentNewMerchantServices
-                .setServices(merchant.getServices());
+                .setServices(merchant.clone().getServices());
         replaceFragments(fragmentNewMerchantServices);
         currentFragmentMerchantPage = fragmentNewMerchantServices;
     }
@@ -189,7 +189,7 @@ public class FragmentMerchantOwnerPage extends Fragment {
         merchant_page.setVisibility(View.VISIBLE);
         fragmentNewMerchantTimes = new FragmentNewMerchantTimes();
         replaceFragments(fragmentNewMerchantTimes);
-        fragmentNewMerchantTimes.setMerchant(merchant);
+        fragmentNewMerchantTimes.setMerchant(merchant.clone());
         currentFragmentMerchantPage = fragmentNewMerchantTimes;
     }
 

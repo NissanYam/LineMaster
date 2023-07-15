@@ -24,4 +24,10 @@ public class Address {
         this.lng = lng;
         return this;
     }
+    public Address clone(){
+        Address address = new Address();
+        address.lat = this.lat;
+        address.lng = this.lng;
+        return address;
+    }
 }
