@@ -72,9 +72,11 @@ public class FragmentRegister extends Fragment {
                 String firstName = register_EDT_firstName.getText().toString().trim();
                 String lastName = register_EDT_lastName.getText().toString().trim();
                 if(!MySignal.getInstance().isEmail(email)){
+                    MySignal.getInstance().toast("Enter valid email!");
                     MySignal.getInstance().playYoyo(register_EDT_email);
                     return;
                 } else if (password.isEmpty()) {
+                    MySignal.getInstance().toast("Enter valid password with minimum 6 characters!");
                     MySignal.getInstance().playYoyo(register_EDT_password);
                     return;
                 }else if(firstName.isEmpty()){

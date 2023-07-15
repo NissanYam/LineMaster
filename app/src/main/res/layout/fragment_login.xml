@@ -64,37 +64,4 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:padding="15dp">
-        <ImageView
-            android:id="@+id/login_IMG_facebook"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/facebook"
-            android:layout_weight="1"/>
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.2"/>
-        <ImageView
-            android:id="@+id/login_IMG_google"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/google"
-            android:layout_weight="1"/>
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.2"/>
-        <ImageView
-            android:id="@+id/login_IMG_twitter"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/twitter"
-            android:layout_weight="1"/>
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
 </RelativeLayout>

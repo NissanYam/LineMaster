@@ -24,10 +24,6 @@ public class FragmentAllMerchants extends Fragment {
     public FragmentAllMerchants() {
     }
 
-    public ArrayList<Merchant> getMerchants() {
-        return merchants;
-    }
-
     public FragmentAllMerchants setMerchants(ArrayList<Merchant> merchants) {
         this.merchants = merchants;
         return this;

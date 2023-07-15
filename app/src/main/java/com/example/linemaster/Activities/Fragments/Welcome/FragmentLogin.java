@@ -32,10 +32,6 @@ public class FragmentLogin extends Fragment {
     private AppCompatEditText login_EDT_password;
     private CallBackFragmentLogin callBackFragmentLogin;
     private FirebaseAuth mAuth;
-
-    private ImageView login_IMG_facebook,
-                        login_IMG_google,
-                        login_IMG_twitter;
     private GoogleSignInOptions gso;
     private GoogleSignInClient gsc;
     public FragmentLogin() {
@@ -85,9 +81,6 @@ public class FragmentLogin extends Fragment {
         login_BTN_login = view.findViewById(R.id.login_BTN_login);
         login_EDT_email = view.findViewById(R.id.login_EDT_email);
         login_EDT_password = view.findViewById(R.id.login_EDT_password);
-        login_IMG_facebook = view.findViewById(R.id.login_IMG_facebook);
-        login_IMG_google = view.findViewById(R.id.login_IMG_google);
-        login_IMG_twitter = view.findViewById(R.id.login_IMG_twitter);
     }
 
     @Override
@@ -122,24 +115,6 @@ public class FragmentLogin extends Fragment {
                                 }
                             });
                 }
-            }
-        });
-
-        login_IMG_facebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        login_IMG_google.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
-        login_IMG_twitter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
             }
         });
     }

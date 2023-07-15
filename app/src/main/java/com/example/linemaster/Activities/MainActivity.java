@@ -206,10 +206,22 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void openMerchantPage(Merchant item) {
             if(item != null){
-                fragmentMerchantHomePage.setMerchant(item);
-                replaceFragments(fragmentMerchantHomePage);
-                main_IMG_return.setVisibility(View.VISIBLE);
-                main_circleMenu.setVisibility(View.INVISIBLE);
+                MyRTFB.getSpecificMerchant(item.getMerchantName(), item.getOwner(), new MyRTFB.CB_Merchant() {
+                    @Override
+                    public void getMerchantData(Merchant merchant) {
+                        if(merchant != null){
+                            fragmentMerchantHomePage.setMerchant(merchant);
+                            replaceFragments(fragmentMerchantHomePage);
+                            main_IMG_return.setVisibility(View.VISIBLE);
+                            main_circleMenu.setVisibility(View.INVISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void getAllMerchants(ArrayList<Merchant> merchantArrayList) {
+                        ///not used
+                    }
+                });
             }
         }
     };
